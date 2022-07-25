@@ -1,2 +1,5 @@
 microservice:
-  title: Microservice Architecture & Pattern
+  title: Maresciallo non mi prendi!
+security:
+  admin_pass: password
+  user_pass: spidey

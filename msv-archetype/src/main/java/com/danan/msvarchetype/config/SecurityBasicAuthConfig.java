@@ -1,6 +1,7 @@
 package com.danan.msvarchetype.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -19,6 +20,12 @@ public class SecurityBasicAuthConfig {
 	@Autowired
 	private AuthenticationEntryPoint authEntryPoint;
 	
+	@Value("${security.admin_pass}")
+	private String admin_pass;
+	
+	@Value("${security.user_pass}")
+	private String user_pass;
+	
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http.csrf().disable().authorizeRequests().antMatchers("/api/chassis/security/basic_auth/*").authenticated()
@@ -29,8 +36,8 @@ public class SecurityBasicAuthConfig {
 
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		auth.inMemoryAuthentication().withUser("admin").password(encoder().encode("password")).roles("ADMIN");
-		auth.inMemoryAuthentication().withUser("spiderman").password(encoder().encode("spidey")).roles("SUPERHERO");
+		auth.inMemoryAuthentication().withUser("admin").password(encoder().encode(admin_pass)).roles("ADMIN");
+		auth.inMemoryAuthentication().withUser("spiderman").password(encoder().encode(user_pass)).roles("SUPERHERO");
 	}
 
 	@Bean
