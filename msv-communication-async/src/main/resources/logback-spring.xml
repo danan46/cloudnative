@@ -3,7 +3,11 @@
 	<include
 		resource="org/springframework/boot/logging/logback/base.xml" />
 
-	<logger name="com.danan.msvcommunication" level="info" additivity="false">
+	<logger name="com.danan.msvcommunication" level="debug" additivity="false">
+		<appender-ref ref="CONSOLE" />
+	</logger>
+
+	<logger name="org.springframework.kafka" level="info">
 		<appender-ref ref="CONSOLE" />
 	</logger>
 
@@ -11,7 +15,7 @@
 		<appender-ref ref="CONSOLE" />
 	</logger>
 
-	<root level="info">
+	<root level="warn">
 		<appender-ref ref="CONSOLE" />
 	</root>
 

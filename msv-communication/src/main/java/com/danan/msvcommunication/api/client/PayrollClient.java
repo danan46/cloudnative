@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.danan.msvcommunication.api.request.MasterPayrollRequest;
 import com.danan.msvcommunication.api.response.MasterPayrollResponse;
 
-@FeignClient(name = "payrollClient", url = "${app.api.client.payroll.url}")
+@FeignClient(name = "payrollClient", url = "${app.api.client.payroll.url}", fallback = PayrollClientCircuitBreaker.class)
 public interface PayrollClient {
 
 	@DeleteMapping(value = "/api/payroll/master/{employee_id}")
