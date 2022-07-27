@@ -3,7 +3,7 @@
 	<include
 		resource="org/springframework/boot/logging/logback/base.xml" />
 
-	<logger name="com.danan.msvcommunication" level="debug" additivity="false">
+	<logger name="com.danan.msvcommunicationasync" level="debug" additivity="false">
 		<appender-ref ref="CONSOLE" />
 	</logger>
 

@@ -14,7 +14,7 @@ public class PayrollPublisher {
 	private KafkaTemplate<String, Object> kafkaTemplate;
 
 	public void publishMasterPayrollMessage(MasterPayrollMessage message) throws JsonProcessingException {
-		kafkaTemplate.send("t.masterpayroll", message);
+		kafkaTemplate.send("admintome-test", message);
 	}
 
 }

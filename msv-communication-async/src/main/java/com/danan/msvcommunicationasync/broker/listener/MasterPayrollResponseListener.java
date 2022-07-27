@@ -19,7 +19,7 @@ public class MasterPayrollResponseListener {
 	@Autowired
 	private TerminationAsyncService masterPayrollService;
 
-	@KafkaListener(topics = "t.masterpayroll.response")
+	@KafkaListener(topics = "admintome-test-resp")
 	public void listenMasterPayrollResponse(MasterPayrollResponseMessage message) {
 		LOG.debug("[Async-listen] Start listening from message broker, response from disabling master payroll");
 
@@ -31,20 +31,20 @@ public class MasterPayrollResponseListener {
 	// container factory is for dead letter topic (Lecture : Error handling)
 	// Comment either listenMasterPayroll or listenMasterPayrollWithException to
 	// avoid confusion
-	@KafkaListener(topics = "t.masterpayroll.response", containerFactory = "deadLetterContainerFactory")
-	@SendTo(value = "t.masterpayroll.response")
-	public void listenMasterPayrollWithException(MasterPayrollResponseMessage message) {
-		LOG.debug("[Async] Start listening from message broker, disabling master payroll");
-
-		// hardcoded to simulate message processing failure (wrong data)
-		if (false) {
-			throw new IllegalArgumentException("Invalid employee (hardcoded) : " + message.getMessage());
-		}
-
-		masterPayrollService.finalizeEmployeeTerminationApproval(message);
-
-		LOG.debug("[Async] Finish listening from message broker, disabling master payroll");
-
-	}
+//	@KafkaListener(topics = "t.masterpayroll.response", containerFactory = "deadLetterContainerFactory")
+//	@SendTo(value = "t.masterpayroll.response")
+//	public void listenMasterPayrollWithException(MasterPayrollResponseMessage message) {
+//		LOG.debug("[Async] Start listening from message broker, disabling master payroll");
+//
+//		// hardcoded to simulate message processing failure (wrong data)
+//		if (false) {
+//			throw new IllegalArgumentException("Invalid employee (hardcoded) : " + message.getMessage());
+//		}
+//
+//		masterPayrollService.finalizeEmployeeTerminationApproval(message);
+//
+//		LOG.debug("[Async] Finish listening from message broker, disabling master payroll");
+//
+//	}
 
 }

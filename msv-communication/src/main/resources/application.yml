@@ -10,12 +10,6 @@ spring:
     name: msv-communication
   main:
     banner-mode: OFF
-#  cloud:
-#    consul:#      port: 1946
-#      discovery:
-#        instance-id: msv-communication-${random.int}
-#        include-hostname-in-instance-id: true
-#        prefer-ip-address: true
 
 feign:
   circuitbreaker:    enabled: true
